@@ -4,7 +4,11 @@
         <my:name>Kirill</my:name>
         <my:surname>Osokin</my:surname>
         <my:age>36</my:age>
+        <my:sex>
+            <my:man/>
+        </my:sex>
         <my:eyeColor color="green" hue="light"/>
+        <my:lovelyNumber>3.1415926535</my:lovelyNumber>
         <my:details>
             <my:hobbies>
                 <my:hobby name="musik">
@@ -20,6 +24,13 @@
                     </my:dates>
                 </my:hobby>
             </my:hobbies>
+            <my:hasComputers>3</my:hasComputers>
+            <my:hasLimbs hands="2" legs="2" heads="0"/>
+            <my:citiesVisited>
+                <my:city name="Leningrad"/>
+                <my:city name="Moskow"/>
+                <my:city name="sochi"/>
+            </my:citiesVisited>
         </my:details>
     </my:person>
 </my:book>
