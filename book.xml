@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<my:book xmlns:my="myfirstxmlschema">
-   <my:person>
-       <my:name>Kirill</my:name>
-       <my:surname>Osokin</my:surname>
-       <my:age>36</my:age>
-   </my:person>
+<my:book xmlns:my="http://myfirstxmlschema.com">
+    <my:person>
+        <my:name>Kirill</my:name>
+        <my:surname>Osokin</my:surname>
+        <my:age>36</my:age>
+        <my:eyeColor color="green" hue="light"/>
+        <my:details>
+            <my:hobbies>
+                <my:hobby name="musik">
+                    <my:dates>
+                        <my:startDate>1986-09-24</my:startDate>
+                        <my:endDate>1995-01-01</my:endDate>
+                    </my:dates>
+                    <my:instrument>violin</my:instrument>
+                </my:hobby>
+                <my:hobby name="travels">
+                    <my:dates>
+                        <my:startDate>2008-07-24</my:startDate>
+                    </my:dates>
+                </my:hobby>
+            </my:hobbies>
+        </my:details>
+    </my:person>
 </my:book>

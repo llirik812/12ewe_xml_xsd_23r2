@@ -1,41 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="myfirstxmlschema"
-           xmlns="myfirstxmlschema"
+           targetNamespace="http://myfirstxmlschema.com"
+           xmlns="http://myfirstxmlschema.com"
            elementFormDefault="qualified">
 
-<!-- elements -->
-    <xs:element name="book" type="book"/>
-    <xs:element name="person" type="person"/>
+    <!-- root elements -->
+    <xs:element name="book" type="bookType"/>
 
-<!-- Types -->
-    <xs:complexType name="book">
+    <!-- Types -->
+    <xs:complexType name="bookType">
         <xs:all>
-           <xs:element ref="person" minOccurs="1"/>
+            <xs:element name="person" type="personType" minOccurs="1"/>
         </xs:all>
     </xs:complexType>
 
-    <xs:complexType name="person">
-     <xs:sequence>
-        <xs:element name="name" type="personsName"/>
-        <xs:element name="surname" type="personsName"/>
-        <xs:element name="age">
-           <xs:simpleType>
-               <xs:restriction base="xs:integer">
-                    <xs:minInclusive value="18"/>
-                    <xs:maxInclusive value="150"/>
-               </xs:restriction>
-           </xs:simpleType>
-        </xs:element>
-     </xs:sequence>
+    <xs:complexType name="personType">
+        <xs:sequence>
+            <xs:element name="name" type="personsNameType" maxOccurs="1" minOccurs="1"/>
+            <xs:element name="surname" type="personsNameType" maxOccurs="1" minOccurs="1"/>
+            <xs:element name="age" maxOccurs="1" minOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="18"/>
+                        <xs:maxInclusive value="150"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="eyeColor" maxOccurs="1" minOccurs="1">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="color" type="colorType"/>
+                            <xs:attribute name="hue" type="hueType"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="details" type="details" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
     </xs:complexType>
 
-    <xs:simpleType name="personsName">
-     <xs:restriction base="xs:string">
-           <xs:maxLength value="10"/>
-           <xs:minLength value="1"/>
-           <xs:pattern value="[A-Za-z ]*"/>
-     </xs:restriction>
+    <xs:simpleType name="colorType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="brown"/>
+            <xs:enumeration value="red"/>
+            <xs:enumeration value="green"/>
+        </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="hueType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="dark"/>
+            <xs:enumeration value="light"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="personsNameType">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="10"/>
+            <xs:minLength value="1"/>
+            <xs:pattern value="[A-Za-z ]*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="details">
+        <xs:sequence>
+            <xs:element name="hobbies" type="hobbiesType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="hobbiesType">
+        <xs:sequence>
+            <xs:element name="hobby" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="dates" type="datesType" maxOccurs="1"/>
+                        <xs:element name="instrument" minOccurs="0" maxOccurs="1">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="violin"/>
+                                    <xs:enumeration value="piano"/>
+                                    <xs:enumeration value="trumpet"/>
+                                    <xs:enumeration value="cello"/>
+                                    <xs:enumeration value="flute"/>
+                                    <xs:enumeration value="drums"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="name">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="musik"/>
+                                <xs:enumeration value="programming"/>
+                                <xs:enumeration value="travels"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="datesType">
+        <xs:sequence>
+            <xs:element name="startDate" type="xs:date" maxOccurs="1"/>
+            <xs:element name="endDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
 </xs:schema>
+
