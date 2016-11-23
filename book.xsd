@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="myfirstxmlschema"
+           xmlns="myfirstxmlschema"
+           elementFormDefault="qualified">
+
+<!-- elements -->
+    <xs:element name="book" type="book"/>
+    <xs:element name="person" type="person"/>
+
+<!-- Types -->
+    <xs:complexType name="book">
+        <xs:all>
+           <xs:element ref="person" minOccurs="1"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="person">
+     <xs:sequence>
+        <xs:element name="name" type="personsName"/>
+        <xs:element name="surname" type="personsName"/>
+        <xs:element name="age">
+           <xs:simpleType>
+               <xs:restriction base="xs:integer">
+                    <xs:minInclusive value="18"/>
+                    <xs:maxInclusive value="150"/>
+               </xs:restriction>
+           </xs:simpleType>
+        </xs:element>
+     </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="personsName">
+     <xs:restriction base="xs:string">
+           <xs:maxLength value="10"/>
+           <xs:minLength value="1"/>
+           <xs:pattern value="[A-Za-z ]*"/>
+     </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<my:book xmlns:my="myfirstxmlschema">
+   <my:person>
+       <my:name>Kirill</my:name>
+       <my:surname>Osokin</my:surname>
+       <my:age>36</my:age>
+   </my:person>
+</my:book>
