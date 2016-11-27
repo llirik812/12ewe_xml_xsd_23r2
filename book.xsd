@@ -5,17 +5,53 @@
            elementFormDefault="qualified">
 
     <!-- root elements -->
-    <xs:element name="book" type="my:bookType"/>
+    <xs:element name="root">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="personBook" type="my:personBookType"/>
+                <xs:element name="usesLanguages" type="my:usesLanguagesType" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+        <xs:key name="personKey">
+            <xs:selector xpath="my:personBook/my:person"/>
+            <xs:field xpath="my:name"/>
+            <xs:field xpath="my:surname"/>
+            <xs:field xpath="my:age"/>
+            <xs:field xpath="my:sex"/>
+        </xs:key>
+        <xs:key name="personIdKey">
+            <xs:selector xpath="my:personBook/my:person"/>
+            <xs:field xpath="my:id"/>
+        </xs:key>
+        <xs:keyref name="referenceToPerson" refer="my:personIdKey">
+            <xs:selector xpath="my:usesLanguages/my:person"/>
+            <xs:field xpath="my:id"/>
+        </xs:keyref>
+    </xs:element>
 
     <!-- Types -->
-    <xs:complexType name="bookType">
-        <xs:all>
-            <xs:element name="person" type="my:personType" minOccurs="1"/>
-        </xs:all>
+    <xs:complexType name="personBookType">
+        <xs:sequence>
+            <xs:element name="person" type="my:personType" minOccurs="1"  maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="usesLanguagesType">
+        <xs:sequence>
+            <xs:element name="person" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:integer"/>
+                        <xs:any namespace="http://mylanguagesxmlschema.com" minOccurs="1" maxOccurs="1" processContents="strict"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="personType">
         <xs:sequence>
+            <xs:element name="id" maxOccurs="1" minOccurs="1" type="xs:integer"/>
             <xs:element name="name" type="my:personsNameType" maxOccurs="1" minOccurs="1"/>
             <xs:element name="surname" type="my:personsNameType" maxOccurs="1" minOccurs="1"/>
             <xs:element name="age" maxOccurs="1" minOccurs="1">
@@ -27,12 +63,12 @@
                 </xs:simpleType>
             </xs:element>
             <xs:element name="sex">
-                <xs:complexType>
-                    <xs:choice>
-                        <xs:element name="man" type="xs:string"/>
-                        <xs:element name="woman" type="xs:string"/>
-                    </xs:choice>
-                </xs:complexType>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="MALE"/>
+                        <xs:enumeration value="FEMALE"/>
+                    </xs:restriction>
+                </xs:simpleType>
             </xs:element>
             <xs:element name="eyeColor" maxOccurs="1" minOccurs="1">
                 <xs:complexType>
