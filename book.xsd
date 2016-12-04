@@ -1,59 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            targetNamespace="http://myfirstxmlschema.com"
-           xmlns:my="http://myfirstxmlschema.com"
+           xmlns:book="http://myfirstxmlschema.com"
            elementFormDefault="qualified">
 
     <!-- root elements -->
-    <xs:element name="root">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="personBook" type="my:personBookType"/>
-                <xs:element name="usesLanguages" type="my:usesLanguagesType" minOccurs="0"/>
-            </xs:sequence>
-        </xs:complexType>
+    <xs:element name="root" type="book:rootType">
         <xs:key name="personKey">
-            <xs:selector xpath="my:personBook/my:person"/>
-            <xs:field xpath="my:name"/>
-            <xs:field xpath="my:surname"/>
-            <xs:field xpath="my:age"/>
-            <xs:field xpath="my:sex"/>
+            <xs:selector xpath="book:personBook/book:person"/>
+            <xs:field xpath="book:name"/>
+            <xs:field xpath="book:surname"/>
+            <xs:field xpath="book:age"/>
+            <xs:field xpath="book:sex"/>
         </xs:key>
         <xs:key name="personIdKey">
-            <xs:selector xpath="my:personBook/my:person"/>
-            <xs:field xpath="my:id"/>
+            <xs:selector xpath="book:personBook/book:person"/>
+            <xs:field xpath="book:id"/>
         </xs:key>
-        <xs:keyref name="referenceToPerson" refer="my:personIdKey">
-            <xs:selector xpath="my:usesLanguages/my:person"/>
-            <xs:field xpath="my:id"/>
-        </xs:keyref>
     </xs:element>
+    <xs:complexType name="rootType">
+        <xs:sequence>
+            <xs:element name="personBook" type="book:personBookType" minOccurs="0"/>
+            <xs:any namespace="http://mylanguagesxmlschema.com" minOccurs="0" processContents="strict"/>
+        </xs:sequence>
+    </xs:complexType>
 
     <!-- Types -->
     <xs:complexType name="personBookType">
         <xs:sequence>
-            <xs:element name="person" type="my:personType" minOccurs="1"  maxOccurs="unbounded"/>
-        </xs:sequence>
-    </xs:complexType>
-
-    <xs:complexType name="usesLanguagesType">
-        <xs:sequence>
-            <xs:element name="person" minOccurs="1" maxOccurs="unbounded">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="id" type="xs:integer"/>
-                        <xs:any namespace="http://mylanguagesxmlschema.com" minOccurs="1" maxOccurs="1" processContents="strict"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
+            <xs:element name="person" type="book:personType" minOccurs="1"  maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="personType">
         <xs:sequence>
             <xs:element name="id" maxOccurs="1" minOccurs="1" type="xs:integer"/>
-            <xs:element name="name" type="my:personsNameType" maxOccurs="1" minOccurs="1"/>
-            <xs:element name="surname" type="my:personsNameType" maxOccurs="1" minOccurs="1"/>
+            <xs:element name="name" type="book:personsNameType" maxOccurs="1" minOccurs="1"/>
+            <xs:element name="surname" type="book:personsNameType" maxOccurs="1" minOccurs="1"/>
             <xs:element name="age" maxOccurs="1" minOccurs="1">
                 <xs:simpleType>
                     <xs:restriction base="xs:integer">
@@ -74,8 +57,8 @@
                 <xs:complexType>
                     <xs:simpleContent>
                         <xs:extension base="xs:string">
-                            <xs:attribute name="color" type="my:colorType"/>
-                            <xs:attribute name="hue" type="my:hueType"/>
+                            <xs:attribute name="color" type="book:colorType"/>
+                            <xs:attribute name="hue" type="book:hueType"/>
                         </xs:extension>
                     </xs:simpleContent>
                 </xs:complexType>
@@ -87,7 +70,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="details" type="my:detailsType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="details" type="book:detailsType" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -117,10 +100,10 @@
 
     <xs:complexType name="detailsType">
         <xs:sequence>
-            <xs:group ref="my:detailsGroup"/>
+            <xs:group ref="book:detailsGroup"/>
             <xs:element name="hasLimbs">
                 <xs:complexType>
-                    <xs:attributeGroup ref="my:limbsAttributeGroup"/>
+                    <xs:attributeGroup ref="book:limbsAttributeGroup"/>
                 </xs:complexType>
             </xs:element>
             <xs:element name="citiesVisited">
@@ -141,7 +124,7 @@
                     </xs:sequence>
                 </xs:complexType>
                 <xs:unique name="cityName">
-                    <xs:selector xpath="my:city"/> <!-- selector работает только с fully clarified namespace -->
+                    <xs:selector xpath="book:city"/> <!-- selector работает только с fully clarified namespace -->
                     <xs:field xpath="@name"/>
                 </xs:unique>
             </xs:element>
@@ -177,7 +160,7 @@
 
     <xs:group name="detailsGroup">
         <xs:sequence>
-            <xs:element name="hobbies" type="my:hobbiesType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="hobbies" type="book:hobbiesType" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="hasComputers">
                 <xs:simpleType>
                     <xs:restriction base="xs:integer">
@@ -195,7 +178,7 @@
             <xs:element name="hobby" maxOccurs="unbounded">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="dates" type="my:datesType" maxOccurs="1"/>
+                        <xs:element name="dates" type="book:datesType" maxOccurs="1"/>
                         <xs:element name="instrument" minOccurs="0" maxOccurs="1">
                             <xs:simpleType>
                                 <xs:restriction base="xs:string">

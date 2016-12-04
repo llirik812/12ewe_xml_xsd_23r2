@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<my:root xmlns:my="http://myfirstxmlschema.com" xmlns:my2="http://mylanguagesxmlschema.com" xmlns:my3="http://mygirlsxmlschema.com">
+<my:root xmlns:my="http://myfirstxmlschema.com"
+         xmlns:my2="http://mylanguagesxmlschema.com"
+         xmlns:girls="http://mygirlsxmlschema.com">
     <my:personBook>
         <my:person>
             <my:id>1</my:id>
@@ -43,10 +45,10 @@
             <my:lovelyNumber>3.1415926535</my:lovelyNumber>
         </my:person>
     </my:personBook>
-    <my:usesLanguages>
-        <my:person>
-            <my:id>1</my:id>
-            <my2:languages>Some languages</my2:languages>
-        </my:person>
-    </my:usesLanguages>
+    <my2:language>  <!--start to do the change-->
+        <my2:person>
+            <my2:id>1</my2:id>
+            <my2:languages>russian</my2:languages>
+        </my2:person>
+    </my2:language>
 </my:root>
