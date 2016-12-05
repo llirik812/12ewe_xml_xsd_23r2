@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://myfirstxmlschema.com/root"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:root="http://myfirstxmlschema.com/root">
+    <xs:element name="root">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:any maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,34 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://myfirstxmlschema.com"
-           xmlns:book="http://myfirstxmlschema.com"
+           targetNamespace="http://myfirstxmlschema.com/book"
+           xmlns:book="http://myfirstxmlschema.com/book"
+           xmlns:lang="http://myfirstxmlschema.com/lang"
            elementFormDefault="qualified">
 
-    <!-- root elements -->
-    <xs:element name="root" type="book:rootType">
+    <xs:element name="personBook" type="book:personBookType">
         <xs:key name="personKey">
-            <xs:selector xpath="book:personBook/book:person"/>
+            <xs:selector xpath="book:person"/>
             <xs:field xpath="book:name"/>
             <xs:field xpath="book:surname"/>
             <xs:field xpath="book:age"/>
             <xs:field xpath="book:sex"/>
         </xs:key>
         <xs:key name="personIdKey">
-            <xs:selector xpath="book:personBook/book:person"/>
+            <xs:selector xpath="book:person"/>
             <xs:field xpath="book:id"/>
         </xs:key>
+        <xs:keyref name="personIdKeyLang" refer="book:personIdKey">
+            <xs:selector xpath="lang:person"/>
+            <xs:field xpath="lang:id"/>
+        </xs:keyref>
     </xs:element>
-    <xs:complexType name="rootType">
-        <xs:sequence>
-            <xs:element name="personBook" type="book:personBookType" minOccurs="0"/>
-            <xs:any namespace="http://mylanguagesxmlschema.com" minOccurs="0" processContents="strict"/>
-        </xs:sequence>
-    </xs:complexType>
 
     <!-- Types -->
     <xs:complexType name="personBookType">
         <xs:sequence>
             <xs:element name="person" type="book:personType" minOccurs="1"  maxOccurs="unbounded"/>
+            <!-- usesLanguage - temporary approach -->
+            <xs:element name="usesLanguage">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="person">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="id" type="xs:integer"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
 

@@ -1,29 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://mylanguagesxmlschema.com"
-           xmlns:lang="http://mylanguagesxmlschema.com"
-           xmlns:book="http://myfirstxmlschema.com"
+           targetNamespace="http://myfirstxmlschema.com/lang"
+           xmlns:lang="http://myfirstxmlschema.com/lang"
+           xmlns:book="http://myfirstxmlschema.com/book"
            elementFormDefault="qualified">
 
-    <!--<xs:import id="bookSchema" namespace="http://myfirstxmlschema.com"/>-->
-
-    <xs:element name="language" type="lang:usesLanguagesType">
-        <!--<xs:keyref name="referenceToPerson" refer="book:personIdKey">
-            <xs:selector xpath="lang:usesLanguages/lang:person"/>
-            <xs:field xpath="lang:id"/>
-        </xs:keyref>-->
-    </xs:element>
-    <xs:complexType name="usesLanguagesType">
-        <xs:sequence>
-            <xs:element name="person" minOccurs="1" maxOccurs="unbounded">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="id" type="xs:integer"/>
-                        <xs:element name="languages" type="xs:string"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-        </xs:sequence>
-    </xs:complexType>
+    <!-- cant use elements here which refer to s\keys in another namespace -->
 </xs:schema>
-

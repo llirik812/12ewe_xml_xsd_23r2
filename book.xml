@@ -1,54 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<my:root xmlns:my="http://myfirstxmlschema.com"
-         xmlns:my2="http://mylanguagesxmlschema.com"
-         xmlns:girls="http://mygirlsxmlschema.com">
-    <my:personBook>
-        <my:person>
-            <my:id>1</my:id>
-            <my:name>Kirill</my:name>
-            <my:surname>Osokin</my:surname>
-            <my:age>36</my:age>
-            <my:sex>MALE</my:sex>
-            <my:eyeColor color="green" hue="light"/>
-            <my:lovelyNumber>3.1415926535</my:lovelyNumber>
-            <my:details>
-                <my:hobbies>
-                    <my:hobby name="musik">
-                        <my:dates>
-                            <my:startDate>1986-09-24</my:startDate>
-                            <my:endDate>1995-01-01</my:endDate>
-                        </my:dates>
-                        <my:instrument>violin</my:instrument>
-                    </my:hobby>
-                    <my:hobby name="travels">
-                        <my:dates>
-                            <my:startDate>2008-07-24</my:startDate>
-                        </my:dates>
-                    </my:hobby>
-                </my:hobbies>
-                <my:hasComputers>3</my:hasComputers>
-                <my:hasLimbs hands="2" legs="2" heads="0"/>
-                <my:citiesVisited>
-                    <my:city name="Leningrad"/>
-                    <my:city name="Moskow"/>
-                    <my:city name="sochi"/>
-                </my:citiesVisited>
-            </my:details>
-        </my:person>
-        <my:person>
-            <my:id>2</my:id>
-            <my:name>Kirill</my:name>
-            <my:surname>Osokin</my:surname>
-            <my:age>36</my:age>
-            <my:sex>FEMALE</my:sex>
-            <my:eyeColor color="green" hue="light"/>
-            <my:lovelyNumber>3.1415926535</my:lovelyNumber>
-        </my:person>
-    </my:personBook>
-    <my2:language>  <!--start to do the change-->
-        <my2:person>
-            <my2:id>1</my2:id>
-            <my2:languages>russian</my2:languages>
-        </my2:person>
-    </my2:language>
-</my:root>
+<root:root xmlns:root="http://myfirstxmlschema.com/root"
+         xmlns:book="http://myfirstxmlschema.com/book"
+         xmlns:lang="http://myfirstxmlschema.com/lang"
+         xmlns:girls="http://myfirstxmlschema.com/girls">
+    <book:personBook>
+        <book:person>
+            <book:id>1</book:id>
+            <book:name>Kirill</book:name>
+            <book:surname>Osokin</book:surname>
+            <book:age>36</book:age>
+            <book:sex>MALE</book:sex>
+            <book:eyeColor color="green" hue="light"/>
+            <book:lovelyNumber>3.1415926535</book:lovelyNumber>
+            <book:details>
+                <book:hobbies>
+                    <book:hobby name="musik">
+                        <book:dates>
+                            <book:startDate>1986-09-24</book:startDate>
+                            <book:endDate>1995-01-01</book:endDate>
+                        </book:dates>
+                        <book:instrument>violin</book:instrument>
+                    </book:hobby>
+                    <book:hobby name="travels">
+                        <book:dates>
+                            <book:startDate>2008-07-24</book:startDate>
+                        </book:dates>
+                    </book:hobby>
+                </book:hobbies>
+                <book:hasComputers>3</book:hasComputers>
+                <book:hasLimbs hands="2" legs="2" heads="0"/>
+                <book:citiesVisited>
+                    <book:city name="Leningrad"/>
+                    <book:city name="Moskow"/>
+                    <book:city name="sochi"/>
+                </book:citiesVisited>
+            </book:details>
+        </book:person>
+        <book:person>
+            <book:id>2</book:id>
+            <book:name>Kirill</book:name>
+            <book:surname>Osokin</book:surname>
+            <book:age>36</book:age>
+            <book:sex>FEMALE</book:sex>
+            <book:eyeColor color="green" hue="light"/>
+            <book:lovelyNumber>3.1415926535</book:lovelyNumber>
+        </book:person>
+        <book:usesLanguage>
+            <book:person>
+                <book:id>1</book:id>
+            </book:person>
+        </book:usesLanguage>
+
+    </book:personBook>
+</root:root>
