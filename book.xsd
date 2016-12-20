@@ -2,7 +2,6 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            targetNamespace="http://myfirstxmlschema.com/book"
            xmlns:book="http://myfirstxmlschema.com/book"
-           xmlns:lang="http://myfirstxmlschema.com/lang"
            elementFormDefault="qualified">
 
     <xs:element name="personBook" type="book:personBookType">
@@ -18,8 +17,8 @@
             <xs:field xpath="book:id"/>
         </xs:key>
         <xs:keyref name="personIdKeyLang" refer="book:personIdKey">
-            <xs:selector xpath="lang:person"/>
-            <xs:field xpath="lang:id"/>
+            <xs:selector xpath="book:usesLanguage/book:person"/>
+            <xs:field xpath="book:id"/>
         </xs:keyref>
     </xs:element>
 

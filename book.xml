@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root:root xmlns:root="http://myfirstxmlschema.com/root"
          xmlns:book="http://myfirstxmlschema.com/book"
-         xmlns:lang="http://myfirstxmlschema.com/lang"
-         xmlns:girls="http://myfirstxmlschema.com/girls">
+         xmlns:lang="http://myfirstxmlschema.com/lang">
     <book:personBook>
         <book:person>
             <book:id>1</book:id>
@@ -50,6 +49,5 @@
                 <book:id>1</book:id>
             </book:person>
         </book:usesLanguage>
-
     </book:personBook>
 </root:root>

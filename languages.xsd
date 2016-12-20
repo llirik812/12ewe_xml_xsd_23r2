@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://myfirstxmlschema.com/lang"
-           xmlns:lang="http://myfirstxmlschema.com/lang"
-           xmlns:book="http://myfirstxmlschema.com/book"
-           elementFormDefault="qualified">
-
-    <!-- cant use elements here which refer to s\keys in another namespace -->
-</xs:schema>
