@@ -1,0 +1,1 @@
+//xs:sequence[xs:element[@name='person']]/comment()
