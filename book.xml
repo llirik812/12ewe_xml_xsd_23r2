@@ -8,7 +8,8 @@
             <book:surname>Osokin</book:surname>
             <book:age>36</book:age>
             <book:sex>MALE</book:sex>
-            <book:eyeColor color="green" hue="light"/>
+            <book:eyeColor
+                    color="green" hue="light"/>
             <book:lovelyNumber>3.1415926535</book:lovelyNumber>
             <book:details>
                 <book:hobbies>
@@ -34,6 +35,7 @@
                 </book:citiesVisited>
             </book:details>
         </book:person>
+        <!-- This is the comment -->
         <book:person>
             <book:id>2</book:id>
             <book:name>Kirill</book:name>

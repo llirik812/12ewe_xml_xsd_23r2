@@ -1,1 +1,25 @@
-//xs:sequence[xs:element[@name='person']]/comment()
+/descendant-or-self::book:age
+
+/descendant-or-self::book:id[text()=2] нода <id>2</id>
+/descendant-or-self::book:id[text()=2]/self::node() - тот же результат
+
+/descendant-or-self::book:id[text()=2]/.. - выберет родителя
+
+/descendant-or-self::book:id[text()=2]/parent::node()
+/descendant-or-self::book:id[text()=2]/parent::node()/node()
+
+
+/descendant-or-self::book:id[text()=2]/parent::node()/node()[1] - выберет перевод строки
+/descendant-or-self::book:id[text()=2]/parent::node()/*[1] - выберет первый элемент
+
+/descendant-or-self::book:id[text()=2]/parent::node()/preceding-sibling::comment() - выберет комментарий
+/descendant-or-self::book:id[text()=2]/preceding::comment() - выберет комментарий
+
+/descendant-or-self::book:id[text()=2]/ancestor::node() - почему то не работает в IDEA
+
+/descendant-or-self::book:eyeColor/attribute::* - выбирает все атрибуты
+/descendant-or-self::book:eyeColor/attribute::node() - тоже самое
+/descendant-or-self::book:eyeColor/@* - тоже самое
+
+count(//book:person) - количество найденных нод
+//book:personBook/book:person[last()] - возвращает последний элемент среди siblings, тут last() = 3
