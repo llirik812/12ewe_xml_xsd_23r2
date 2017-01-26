@@ -2,6 +2,8 @@
 
 /descendant-or-self::book:id[text()=2] нода <id>2</id>
 /descendant-or-self::book:id[text()=2]/self::node() - тот же результат
+/descendant-or-self::book:id[text()=2 or text()=1]  ноды <id>1</id> и ноды <id>2</id>
+
 
 /descendant-or-self::book:id[text()=2]/.. - выберет родителя
 
@@ -14,6 +16,7 @@
 
 /descendant-or-self::book:id[text()=2]/parent::node()/preceding-sibling::comment() - выберет комментарий
 /descendant-or-self::book:id[text()=2]/preceding::comment() - выберет комментарий
+//book:personBook//book:id - выберет все ноды типа book:id
 
 /descendant-or-self::book:id[text()=2]/ancestor::node() - почему то не работает в IDEA
 
@@ -23,3 +26,4 @@
 
 count(//book:person) - количество найденных нод
 //book:personBook/book:person[last()] - возвращает последний элемент среди siblings, тут last() = 3
+
